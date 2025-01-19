@@ -23,7 +23,7 @@ class {{name.pascalCase()}}Model extends {{name.pascalCase()}}Entity {
 
   /// Factory method to create a {{name.pascalCase()}} model instance from an 
   /// entity
-  factory {{name.pascalCase()}}Model.fromEntity({required {{name.pascalCase()}}Entity entity}) => const {{name.pascalCase()}}Model();
+  factory {{name.pascalCase()}}Model.fromEntity({required {{name.pascalCase()}}Entity entity}) => {{name.pascalCase()}}Model();
 
   /// Converts the {{name.pascalCase()}} model instance to a map
   Map<String, dynamic> toMap() => {};
@@ -32,5 +32,5 @@ class {{name.pascalCase()}}Model extends {{name.pascalCase()}}Entity {
   String toJson() => jsonEncode(toMap());
   
   /// Converts the {{name.pascalCase()}} model instance to an entity
-  {{name.pascalCase()}}Entity toEntity() => const {{name.pascalCase()}}Entity();
+  {{name.pascalCase()}}Entity toEntity() => {{name.pascalCase()}}Entity();
 }

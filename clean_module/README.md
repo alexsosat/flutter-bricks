@@ -2,8 +2,8 @@
 
 This mason brick generates a feature structure following the principles of Clean Architecture. It helps in organizing your codebase into distinct layers, promoting separation of concerns and maintainability.
 
-[!IMPORTANT] 
- This brick makes use of the clean_template feature for most of its functionality, it is recommended to execute this brick before using this one
+> [!IMPORTANT] 
+>  This brick makes use of the [clean_template][1] feature for most of its functionality, it is recommended to execute this brick before using this one
 
 ## Generates
 ```
@@ -74,3 +74,14 @@ Options:
 Use the `--areCommentsOn` flag to include descriptive use comments in each class
 
 Use the `--addTemplateCode` flag to include example code functions in each class
+
+## TODOS
+- [ ] Add feature page to router
+- [ ] Adds template codes to state managements
+  - [X] Cubit
+  - [ ] Bloc
+  - [ ] Riverpod
+  - [ ] GetX
+  - [ ] Provider
+
+[1]: https://brickhub.dev/bricks/clean_template

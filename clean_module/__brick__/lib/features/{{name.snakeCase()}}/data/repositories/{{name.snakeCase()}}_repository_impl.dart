@@ -30,11 +30,11 @@ class {{name.pascalCase()}}RepositoryImpl implements {{name.pascalCase()}}Reposi
   */{{/areCommentsOn}}
 
   {{#addTemplateCode}}@override
-  Future<Either<Failure, {{name.pascalCase()}}Model>> get{{name.pascalCase()}}(
+  Future<Either<Failure, {{name.pascalCase()}}Entity>> get{{name.pascalCase()}}(
       {required {{name.pascalCase()}}Params {{name.camelCase()}}Params}) async {
 
     {{#hasRemoteData}}if (await networkInfo.isConnected) {
-      return ErrorHandler.handleApiCall<{{name.pascalCase()}}Model>(
+      return ErrorHandler.handleApiCall<{{name.pascalCase()}}Entity>(
         () {
           return remoteDataSource.get{{name.pascalCase()}}({{name.camelCase()}}Params: {{name.camelCase()}}Params);
         },
