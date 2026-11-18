@@ -1,4 +1,4 @@
-import "../../../../../core/adapters/dio_adapter.dart";
+import "package:dio/dio.dart";
 {{#addTemplateCode}}import "../../models/params/{{name.snakeCase()}}_params.dart";
 import "../../models/dtos/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 
@@ -25,7 +25,7 @@ class {{name.pascalCase()}}RemoteDataSourceImpl implements {{name.pascalCase()}}
  {{name.pascalCase()}}RemoteDataSourceImpl({required this.dio});
 
   /// Dio adapter instance
-  final DioAdapter dio;
+  final Dio dio;
 
   {{#areCommentsOn}}/*
   The remote data source implementation is responsible for making the actual API requests. 

@@ -1,6 +1,6 @@
 {{#addTemplateCode}}import "package:fpdart/fpdart.dart";
 
-import "../../../../core/errors/failure.dart";
+import "package:flutter_common_classes/flutter_common_classes.dart";
 
 import "../../data/models/params/{{name.snakeCase()}}_params.dart";
 import "../entities/{{name.snakeCase()}}_entity.dart";{{/addTemplateCode}}

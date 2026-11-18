@@ -1,54 +1,19 @@
-import "package:flutter/material.dart";
-import "package:flutter_flavor/flutter_flavor.dart";
+import "package:flutter_common_classes/flutter_common_classes.dart";
 
 /// A class that provides the environment configuration for the application.
 ///
 /// This class is used to set the environment variables for the application.
-class EnvironmentConfig {
-  /// Key to access a resource of the environment.
-  ///
-  /// example: The key to access the api url.
-  static const String apiUrlKey = "API_URL";
+class {{name.pascalCase()}}Environment {
+  static const valueKey = "valueKey";
 
-  /// Initializes the environment configuration.
-  static void init({
-    required Flavor flavor,
-  }) {
-    FlavorConfig(
-      name: flavor.name,
-      color: Colors.red,
-      location: BannerLocation.topStart,
-      variables: _getVariables(flavor),
-    );
-  }
-
-  static Map<String, dynamic> _getVariables(Flavor flavor) => switch (flavor) {
-        Flavor.local => _localVariables,
-        Flavor.test => _testVariables,
-        Flavor.production => _prodVariables,
-      };
-
-  static const Map<String, dynamic> _localVariables = {
-    apiUrlKey: "",
-  };
-
-  static const Map<String, dynamic> _testVariables = {
-    apiUrlKey: "",
-  };
-
-  static const Map<String, dynamic> _prodVariables = {
-    apiUrlKey: "",
-  };
+  static const Map<String, dynamic> variables = {valueKey: "value"};
 }
 
-/// The different environments for the application.
-enum Flavor {
-  /// The local environment.
-  local,
+/// Example of an app-specific flavor enum implementing [AppFlavor].
+/// Each consuming app defines its own set of values like this one.
+enum {{name.pascalCase()}}Flavor implements AppFlavor {
+  production(variables: {{name.pascalCase()}}Environment.variables),
+  
 
-  /// The test environment.
-  test,
-
-  /// The production environment.
-  production,
+  const {{name.pascalCase()}}Flavor({required this.variables});
 }

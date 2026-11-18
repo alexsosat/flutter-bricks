@@ -164,7 +164,30 @@ analyzer:
   #     - '**.gen.dart'
   #     - '**/generated_plugin_registrant.dart'
   plugins:
-    - dart_code_linter
+    dart_code_linter:
+      diagnostics:
+        arguments-ordering: warning
+        avoid-double-slash-imports: warning
+        avoid-duplicate-exports: true
+        avoid-returning-widgets: true
+        avoid-dynamic: true
+        avoid-global-state: true
+        avoid-redundant-async: true
+        avoid-unnecessary-type-assertions: true
+        avoid-unnecessary-type-casts: true
+        avoid-unrelated-type-assertions: true
+        avoid-unused-parameters: true
+        avoid-nested-conditional-expressions: true
+        newline-before-return: true
+        no-boolean-literal-compare: true
+        prefer-trailing-comma: true
+        prefer-conditional-expressions: true
+        prefer-extracting-callbacks: true
+        no-equal-then-else: true
+        prefer-moving-to-variable: true
+        prefer-match-file-name: true
+        prefer-single-widget-per-file: true
+
 
 dart_code_linter:
   anti-patterns:
@@ -175,23 +198,31 @@ dart_code_linter:
     maximum-nesting-level: 5
     number-of-parameters: 4
     source-lines-of-code: 75
+    maintainability-index: 50
   metrics-exclude:
     - test/**
   rules:
+    - arguments-ordering
+    - avoid-double-slash-imports
+    - avoid-duplicate-exports
+    - avoid-returning-widgets
     - avoid-dynamic
+    - avoid-global-state
     - avoid-redundant-async
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
     - avoid-unrelated-type-assertions
     - avoid-unused-parameters
-    - avoid-nested-conditional-expressions
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 2
     - newline-before-return
     - no-boolean-literal-compare
-    # - no-empty-block
     - prefer-trailing-comma
     - prefer-conditional-expressions
+    - prefer-extracting-callbacks
     - no-equal-then-else
     - prefer-moving-to-variable
     - prefer-match-file-name
+    - prefer-single-widget-per-file
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

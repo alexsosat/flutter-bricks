@@ -1,76 +1,60 @@
 import "dart:async";
 
 import "package:dio/dio.dart";
-import "package:dio/io.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart";
+import "package:flutter_common_classes/flutter_common_classes.dart";
 
-import "../errors/connection/http_call_exception.dart";
-import "../extensions/num_extension.dart";
-import "../services/connection/network_info.dart";
+import "interceptors/auth_interceptor.dart";
 
 /// Adapter for the Dio client
 ///
 /// This adapter is used to create a Dio client with the necessary
 /// configurations for the application. It also includes the necessary
 /// error handling for the application.
-class DioAdapter extends DioForNative {
+class {{name.pascalCase()}}DioAdapter{
   /// Adapter for the Dio client
   ///
   /// This adapter is used to create a Dio client with the necessary
   /// configurations for the application. It also includes the necessary
   /// error handling for the application.
-  DioAdapter({
-    required this.internetInfo,
-    this.receiveTimeout,
-    this.connectTimeout,
-    this.sendTimeout,
+  static Dio create({
+    required String baseUrl,
+    required NetworkInfo internetInfo,
+    Duration? receiveTimeout,
+    Duration? connectTimeout,
+    Duration? sendTimeout,
   }) {
-    _initializeAdapter();
-  }
-
-  /// Information about the internet connection
-  final NetworkInfo internetInfo;
-
-  /// The timeout for the receive operation
-  final Duration? receiveTimeout;
-
-  /// The timeout for the connect operation
-  final Duration? connectTimeout;
-
-  /// The timeout for the send operation
-  final Duration? sendTimeout;
-
-  void _initializeAdapter() {
-    options = BaseOptions(
-      sendTimeout: sendTimeout,
-      connectTimeout: connectTimeout,
-      receiveTimeout: receiveTimeout,
-      contentType: "application/x-www-form-urlencoded",
-      responseType: ResponseType.json,
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrl,
+        sendTimeout: sendTimeout,
+        connectTimeout: connectTimeout,
+        receiveTimeout: receiveTimeout,
+      ),
     );
 
-    interceptors
-      ..add(
-        PrettyDioLogger(
-          requestHeader: false,
-          queryParameters: false,
-          requestBody: true,
-          responseHeader: false,
-          responseBody: true,
-          error: true,
-          showProcessingTime: false,
-          showCUrl: false,
-          canShowLog: kDebugMode,
-        ),
-      )
-      ..add(
-        InterceptorsWrapper(
-          onRequest: onRequestMethod,
-          onResponse: onResponseMethod,
-          onError: onErrorMethod,
-        ),
-      );
+    dio.interceptors.addAll([
+      AuthInterceptor(
+        locationRepository: locationRepository,
+        sessionRepository: sessionRepository,
+      ),
+      PrettyDioLogger(
+        requestHeader: true,
+        queryParameters: true,
+        requestBody: true,
+        responseHeader: false,
+        responseBody: true,
+        error: true,
+        showProcessingTime: false,
+        showCUrl: false,
+        canShowLog: kDebugMode,
+      ),
+      HttpErrorInterceptor(
+        internetInfo: internetInfo,
+      ),
+    ]);
+
+    return dio;
   }
 
   /// Handles the request prior to being sent

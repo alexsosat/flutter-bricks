@@ -1,7 +1,5 @@
-import "package:fpdart/fpdart.dart";
+import "package:flutter_common_classes/flutter_common_classes.dart";
 
-import "../../../../core/constants/classes/use_case.dart";
-import "../../../../core/errors/failure.dart"
 import "../../data/models/params/{{name.camelCase()}}_params.dart";
 import "../entities/{{name.camelCase()}}_entity.dart";
 import "../repositories/{{name.camelCase()}}_repository.dart";

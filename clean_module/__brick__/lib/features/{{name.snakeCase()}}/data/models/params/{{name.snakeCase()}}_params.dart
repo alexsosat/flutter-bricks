@@ -1,4 +1,4 @@
-import '../../../../../core/constants/classes/params.dart';
+import "package:flutter_common_classes/flutter_common_classes.dart";
 
 /// Parameters used to make the {{name.pascalCase()}} request.
 class {{name.pascalCase()}}Params extends Params {

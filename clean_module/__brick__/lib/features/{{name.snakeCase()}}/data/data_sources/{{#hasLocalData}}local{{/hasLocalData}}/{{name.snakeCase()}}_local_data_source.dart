@@ -1,7 +1,7 @@
 import "dart:convert";
 import "package:shared_preferences/shared_preferences.dart";
 
-{{#addTemplateCode}}import "../../../../../../core/errors/app_exception.dart";
+{{#addTemplateCode}}import "package:flutter_common_classes/flutter_common_classes.dart";
 
 import "../../models/dtos/{{name.snakeCase()}}_model.dart";{{/addTemplateCode}}
 

@@ -1,8 +1,7 @@
-{{#addTemplateCode}}import "package:fpdart/fpdart.dart";{{/addTemplateCode}}
+import "package:flutter_common_classes/flutter_common_classes.dart";
 
 {{#hasRemoteData}}{{#hasLocalData}}import "../../../../core/services/connection/network_info.dart";{{/hasLocalData}}{{/hasRemoteData}}
-{{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";
-import "../../../../core/errors/failure.dart";{{/addTemplateCode}}
+{{#addTemplateCode}}import "../../../../core/errors/error_handler.dart";{{/addTemplateCode}}
 
 
 import "../../business/repositories/{{name.snakeCase()}}_repository.dart";
